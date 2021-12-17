@@ -1,0 +1,19 @@
+{
+  "name": "file-share",
+  "version": "0.3.0",
+  "description": "###Testing for tag creation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaikishann/file-share.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jaikishann/file-share/issues"
+  },
+  "homepage": "https://github.com/Jaikishann/file-share#readme"
+}

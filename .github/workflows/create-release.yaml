@@ -1,17 +1,28 @@
-name: 'Teleport Release Creation'
-
-
+name: Releases
 on:
   push:
-      tags: 
-        - 'v*'
+    branches:
+      - main
 
 jobs:
-  release:
-    name: "Release"
+  changelog:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - uses: actions/checkout@v2
+
+      - name: conventional Changelog Action
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v3.7.1
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
+          github-token: ${{ secrets.CHANGELOG_RELEASE }}
+
+      - name: create release
+        uses: actions/create-release@v1
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.CHANGELOG_RELEASE }}
+        with:
+          tag_name: ${{ steps.changelog.outputs.tag }}
+          release_name: ${{ steps.changelog.outputs.tag }}
+          body: ${{ steps.changelog.outputs.clean_changelog }}

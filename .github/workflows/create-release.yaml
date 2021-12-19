@@ -29,4 +29,4 @@ jobs:
         with:
           tag_name: v${{ steps.package-version.outputs.current-version }}
           release_name: v${{ steps.package-version.outputs.current-version }}
-          body: Enter release details
+          body: 'Enter release details'
